@@ -1,4 +1,8 @@
-# Research into using LoRA to finetune VITS (wip)
+# Research into making VITS efficient (wip)
+
+## Goals
+ - [ ] Try to implement LoRA Finetuning on VITS by modifying attentions.py as described in the LoRA Paper
+ - [ ] Try to implement 8-bit quantisation using bitsandbytes to reduce vram usage
 
 ## Plan
  - [x] Extract discriminator from hifigan
@@ -6,10 +10,16 @@
  - [ ] Test finetune as-is on test dataset to make sure patched discriminator works
  - [ ] implement LoRA
  - [ ] Test finetune on lora using same test dataset
+ - [ ] Implement 8-bit quantisation a la bitsandbytes
  - [ ] Create webpage to show results
- - [ ] Do proper testing to compare
  - [ ] Open Source everything ;)
 
+## Ethical Concerns
+ - I realise that if this works, anyone remotely knowledgeable about machine learning will be able to finetune VITS on large datasets quite quickly to achieve pretty good voice cloning. However, this is already a thing(tortoise-tts: mrq fork, DLAS fork), but it takes a long time to finetune and generate. 
+ - However, sparks of efficient finetuning for TTS systems are already [here](https://paperswithcode.com/paper/evaluating-parameter-efficient-transfer), its only a matter of time before someone like me will do it for other models.
+ - My initial plan is to provide a comparison of results, the pretrained models extracted from VITS and Hifi-Gan and thats it. I believe the real value lies in the dataset creation. I will not be opensourcing scripts to clean and curate the data.
+
+# Readme from Original Repo
 
 # VITS: Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech
 
