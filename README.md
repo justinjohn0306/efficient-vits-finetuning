@@ -7,6 +7,7 @@
 ## Plan
  - [x] Extract discriminator from hifigan
  - [x] Modify models.py to match hifigan implementation
+ - [x] Make sure training loop runs
  - [ ] Test finetune as-is on test dataset to make sure patched discriminator works
  - [ ] implement LoRA
  - [ ] Test finetune on lora using same test dataset
