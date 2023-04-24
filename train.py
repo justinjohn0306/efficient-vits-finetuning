@@ -109,19 +109,18 @@ def run(rank, n_gpus, hps):
       generator_state_dict = torch.load('./pretrained/generator.pth')
       if hasattr(net_g, 'module'):
         net_g.module.load_state_dict(generator_state_dict['model'])
-        print("loaded_module")
+        print("pretrained generator loaded")
       else:
         net_g.load_state_dict(generator_state_dict['model'])
-
-      print("pretrained generator loaded")
+        print("pretrained generator loaded")
 
       print("loading pretrained discriminator")
       if hasattr(net_d, 'module'):
         net_d.module.load_state_dict(torch.load('./pretrained/discriminator.pth'))
-        print("loaded_module")
+        print("pretrained discriminator loaded")
       else:
         net_d.load_state_dict(torch.load('./pretrained/discriminator.pth'))
-      print("pretrained discriminator loaded")
+        print("pretrained discriminator loaded")
     epoch_str = 1
     global_step = 0
 
