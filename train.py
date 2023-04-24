@@ -104,7 +104,7 @@ def run(rank, n_gpus, hps):
     _, _, _, epoch_str = utils.load_checkpoint(utils.latest_checkpoint_path(hps.model_dir, "D_*.pth"), net_d, optim_d)
     global_step = (epoch_str - 1) * len(train_loader)
   except:
-    if hps.finetune:
+    if hps.train.finetune:
       print("loading pretrained generator")
       if hasattr(net_g, 'module'):
         net_g.module.load_state_dict(torch.load('./pretrained/generator.pth'))
