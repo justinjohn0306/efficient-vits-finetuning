@@ -19,7 +19,7 @@
 ## Pretrained Models
  - The generator for LJSpeech is [here](https://drive.google.com/file/d/1T-u3OV49W6Lv3bDxh-EA63ALZKHqyy0t/view?usp=share_link)
  - The discriminator(extracted from hifi-gan) is [here](https://drive.google.com/file/d/118ffn807Eqlu891qbNRQP7O9E0-aMPxM/view?usp=share_link)
-<!--  - A notebook with a running training loop is [here](https://colab.research.google.com/drive/1rtbhcfxwRRHPkFJT_u7M_slo8_s_PYcK?usp=sharing) -->
+ - A notebook with a running training loop is [here](https://colab.research.google.com/drive/1rtbhcfxwRRHPkFJT_u7M_slo8_s_PYcK?usp=sharing)
 
 ## Ethical Concerns
  - I realise that if this works, anyone remotely knowledgeable about machine learning will be able to finetune VITS on large datasets quite quickly to achieve pretty good voice cloning. However, this is already a thing(tortoise-tts: mrq fork, DLAS fork), but it takes a long time to finetune and generate. 
