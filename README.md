@@ -51,7 +51,7 @@ We also provide the [pretrained models](https://drive.google.com/drive/folders/1
 0. Python >= 3.6
 0. Clone this repository
 0. Install python requirements. Please refer [requirements.txt](requirements.txt)
-    1. You may need to install espeak first: `apt-get install espeak`
+    1. You may need to install espeak first: `apt-get install espeak-ng`
 0. Download datasets
     1. Download and extract the LJ Speech dataset, then rename or create a link to the dataset folder: `ln -s /path/to/LJSpeech-1.1/wavs DUMMY1`
     1. For mult-speaker setting, download and extract the VCTK dataset, and downsample wav files to 22050 Hz. Then rename or create a link to the dataset folder: `ln -s /path/to/VCTK-Corpus/downsampled_wavs DUMMY2`
