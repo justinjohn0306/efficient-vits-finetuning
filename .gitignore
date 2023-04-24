@@ -9,3 +9,5 @@ __pycache__
 build
 *.c
 monotonic_align/monotonic_align
+pretrained/discriminator.pth
+pretrained/generator.pth

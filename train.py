@@ -104,6 +104,21 @@ def run(rank, n_gpus, hps):
     _, _, _, epoch_str = utils.load_checkpoint(utils.latest_checkpoint_path(hps.model_dir, "D_*.pth"), net_d, optim_d)
     global_step = (epoch_str - 1) * len(train_loader)
   except:
+    if hps.finetune:
+      print("loading pretrained generator")
+      if hasattr(net_g, 'module'):
+        net_g.module.load_state_dict(torch.load('./pretrained/generator.pth'))
+      else:
+        net_g.load_state_dict(torch.load('./pretrained/generator.pth'))
+
+      print("pretrained generator loaded")
+
+      print("loading pretrained discriminator")
+      if hasattr(net_d, 'module'):
+        net_d.module.load_state_dict(torch.load('./pretrained/discriminator.pth'))
+      else:
+        net_d.load_state_dict(torch.load('./pretrained/discriminator.pth'))
+      print("pretrained discriminator loaded")
     epoch_str = 1
     global_step = 0
 
