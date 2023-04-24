@@ -1,3 +1,16 @@
+# Research into using LoRA to finetune VITS (wip)
+
+## Plan
+ - Extract discriminator from hifigan
+ - Modify models.py to match hifigan implementation
+ - Test finetune as-is on test dataset
+ - implement LoRA
+ - Test finetune on lora using same test dataset
+ - Create webpage to show results
+ - Do proper testing to compare
+ - Open Source everything ;)
+
+
 # VITS: Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech
 
 ### Jaehyeon Kim, Jungil Kong, and Juhee Son
