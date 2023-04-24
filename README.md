@@ -16,7 +16,7 @@
  - [ ] Create webpage to show results
  - [ ] Open Source everything ;)
 
-## Pretrained Models
+## Finetuning and Pretrained Models
  - The generator for LJSpeech is [here](https://drive.google.com/file/d/1T-u3OV49W6Lv3bDxh-EA63ALZKHqyy0t/view?usp=share_link)
  - The discriminator(extracted from hifi-gan) is [here](https://drive.google.com/file/d/118ffn807Eqlu891qbNRQP7O9E0-aMPxM/view?usp=share_link)
  - A notebook with a running training loop is [here](https://colab.research.google.com/drive/1rtbhcfxwRRHPkFJT_u7M_slo8_s_PYcK?usp=sharing)
