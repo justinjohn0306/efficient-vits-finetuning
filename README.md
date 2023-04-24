@@ -2,7 +2,7 @@
 
 ## Goals
  - [ ] Try to implement LoRA Finetuning on VITS by modifying attentions.py as described in the LoRA Paper
- - [ ] Try to implement 8-bit quantisation using bitsandbytes to reduce vram usage
+ - [ ] Try to implement 8-bit training using bitsandbytes to reduce vram usage
 
 ## Plan
  - [x] Extract discriminator from hifigan
