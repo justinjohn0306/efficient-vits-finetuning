@@ -219,9 +219,9 @@ def train_and_evaluate(rank, epoch, hps, nets, optims, schedulers, scaler, loade
         #   epoch,
         #   100. * batch_idx / len(train_loader)))
         
-        logging_losses = [f"Epoch:{epoch}, [{int(100 * batch_idx / len(train_loader))}%]"]
+        logging_losses = [f"Epoch:{epoch}, [{round(100 * batch_idx / len(train_loader), 1)}%]"]
         for i in range(len(losses)):
-          logging_losses.append(f"{losses_names[i]}:{losses[i].item()}")
+          logging_losses.append(f"{losses_names[i]}:{round(losses[i].item(), 3)}")
         logging_losses.append(f"global_step:{global_step}")
         logging_losses.append(f"lr:{lr}")
 
