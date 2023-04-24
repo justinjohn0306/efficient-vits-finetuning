@@ -23,7 +23,7 @@
 ## Ethical Concerns
  - I realise that if this works, anyone remotely knowledgeable about machine learning will be able to finetune VITS on large datasets quite quickly to achieve pretty good voice cloning. However, this is already a thing(tortoise-tts: mrq fork, DLAS fork), but it takes a long time to finetune and generate. 
  - However, sparks of efficient finetuning for TTS systems are already [here](https://paperswithcode.com/paper/evaluating-parameter-efficient-transfer), its only a matter of time before someone like me will do it for other models.
- - My initial plan is to provide a comparison of results, the pretrained models extracted from VITS and Hifi-Gan and thats it. I believe the real value lies in the dataset creation. I will not be opensourcing scripts to clean and curate the data.
+ - My initial plan is to only provide a comparison of results, and any good and ethical finetunes. I believe the real value lies in the dataset creation so will not be opensourcing any scripts to clean and curate the data.
 
 # Readme from Original Repo
 
