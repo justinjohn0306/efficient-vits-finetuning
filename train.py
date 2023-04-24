@@ -215,10 +215,20 @@ def train_and_evaluate(rank, epoch, hps, nets, optims, schedulers, scaler, loade
       if global_step % hps.train.log_interval == 0:
         lr = optim_g.param_groups[0]['lr']
         losses = [loss_disc, loss_gen, loss_fm, loss_mel, loss_dur, loss_kl]
-        logger.info('Train Epoch: {} [{:.0f}%]'.format(
-          epoch,
-          100. * batch_idx / len(train_loader)))
-        logger.info([x.item() for x in losses] + [global_step, lr])
+        losses_names = ['loss_disc', 'loss_gen', 'loss_fm', 'loss_mel', 'loss_dur', 'loss_kl']
+        # logger.info('Train Epoch: {} [{:.0f}%]'.format(
+        #   epoch,
+        #   100. * batch_idx / len(train_loader)))
+        
+        logging_losses = [f"Epoch:{epoch}, [{int(100 * batch_idx / len(train_loader))}%]"]
+        for i in range(len(losses)):
+          logging_losses.append(f"{losses_names[i]}:{losses[i].item()}")
+        logging_losses.append(f"global_step:{global_step}")
+        logging_losses.append(f"lr:{lr}")
+
+        logger.info(logging_losses)
+        # logger.info([f"{x.item()}" for x in losses] + [global_step, lr])
+
         
         scalar_dict = {"loss/g/total": loss_gen_all, "loss/d/total": loss_disc_all, "learning_rate": lr, "grad_norm_d": grad_norm_d, "grad_norm_g": grad_norm_g}
         scalar_dict.update({"loss/g/fm": loss_fm, "loss/g/mel": loss_mel, "loss/g/dur": loss_dur, "loss/g/kl": loss_kl})
