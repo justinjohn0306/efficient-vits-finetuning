@@ -1,4 +1,4 @@
-# Research into making VITS efficient (wip)
+# Making VITS efficient (wip)
 
 ## Goals
  - [ ] Try to implement LoRA Finetuning on VITS by modifying attentions.py as described in the LoRA Paper
