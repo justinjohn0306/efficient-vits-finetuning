@@ -284,7 +284,7 @@ def train_and_evaluate(rank, epoch, hps, nets, optims, schedulers, scaler, loade
     with torch.no_grad():
         x_tst = stn_tst.unsqueeze(0)
         x_tst_lengths = torch.LongTensor([stn_tst.size(0)])
-        audio = net_g.infer(x_tst, x_tst_lengths, noise_scale=.667, noise_scale_w=0.8, length_scale=1)[0][0,0].data.float().numpy()
+        audio = net_g.infer(x_tst.cuda(0), x_tst_lengths.cuda(0), noise_scale=.667, noise_scale_w=0.8, length_scale=1)[0][0,0].data.float().numpy()
         wandb.log({"epoch":epoch, "global_step":global_step, "inferred_audio" : wandb.audio(audio, sample_rate=hps.data.sampling_rate, caption='inference_test')})
   if rank == 0:
     logger.info('====> Epoch: {}'.format(epoch))
