@@ -3,6 +3,8 @@
 ## Goals
  - [ ] Try to implement LoRA Finetuning on VITS by modifying attentions.py as described in the LoRA Paper
  - [ ] Try to implement 8-bit training using bitsandbytes to reduce vram usage
+   - [x] 8 bit optimisers
+   - [ ] 8 bit layers
 
 ## Plan
  - [x] Extract discriminator from hifigan
@@ -12,7 +14,8 @@
  - [ ] Test finetune as-is on test dataset to make sure patched discriminator works
  - [ ] implement LoRA
  - [ ] Test finetune on lora using same test dataset
- - [ ] Implement 8-bit quantisation a la bitsandbytes
+ - [x] Implement 8-bit optimizers
+ - [ ] Maybe use 8bit layers(but this will probably increase vram usage)
  - [ ] Create webpage to show results
  - [ ] Open Source everything ;)
 
@@ -20,6 +23,10 @@
  - The generator for LJSpeech is [here](https://drive.google.com/file/d/1T-u3OV49W6Lv3bDxh-EA63ALZKHqyy0t/view?usp=share_link)
  - The discriminator(extracted from hifi-gan) is [here](https://drive.google.com/file/d/118ffn807Eqlu891qbNRQP7O9E0-aMPxM/view?usp=share_link)
  - A notebook with a running training loop is [here](https://colab.research.google.com/drive/1rtbhcfxwRRHPkFJT_u7M_slo8_s_PYcK?usp=sharing)
+
+## 8 bit AdamW
+<img src="resources/bitsandbytes.png" alt="VITS at training with 8bit AdamW" height="150">
+By using 8bit AdamW for the loss. The training now uses approx 8.5gb of vram, wheras before it was using 12gb!!
 
 ## Ethical Concerns
  - I realise that if this works, anyone remotely knowledgeable about machine learning will be able to finetune VITS on large datasets quite quickly to achieve pretty good voice cloning. However, this is already a thing(tortoise-tts: mrq fork, DLAS fork), but it takes a long time to finetune and generate. 
