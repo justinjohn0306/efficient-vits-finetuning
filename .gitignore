@@ -1,11 +1,8 @@
-DUMMY1
-DUMMY2
-DUMMY3
-logs
 __pycache__
 .ipynb_checkpoints
 .*.swp
-
+logs/*.pth
+logs/ljs_base/eval
 build
 *.c
 monotonic_align/monotonic_align
