@@ -5,6 +5,7 @@
  - [ ] Try to implement 8-bit training using bitsandbytes to reduce vram usage
    - [x] 8 bit optimisers
    - [ ] 8 bit layers
+ - [ ] Write paper explaining steps?
 
 ## Plan
  - [x] Extract discriminator from hifigan
@@ -19,6 +20,7 @@
  - [ ] Maybe use 8bit layers(but this will probably increase vram usage)
  - [ ] Create webpage to show results
  - [ ] Open Source everything ;)
+ - [ ] Maybe write a paper?
 
 ## Finetuning and Pretrained Models
  - The generator for LJSpeech is [here](https://drive.google.com/file/d/1T-u3OV49W6Lv3bDxh-EA63ALZKHqyy0t/view?usp=share_link)
