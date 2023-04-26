@@ -10,7 +10,8 @@
  - [x] Extract discriminator from hifigan
  - [x] Modify models.py to match hifigan implementation
  - [x] Make sure training loop runs
- - [ ] Clean up logging, maybe integrate WandB to track training progress
+ - [x] Clean up logging, maybe integrate WandB to track training progress
+   - [x] WandB integrated! Run ```train_wandb.py``` to use it 
  - [ ] Test finetune as-is on test dataset to make sure patched discriminator works
  - [ ] implement LoRA
  - [ ] Test finetune on lora using same test dataset
