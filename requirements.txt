@@ -11,3 +11,4 @@ pyopenjtalk
 protobuf
 tqdm
 phonemizer
+bitsandbytes
