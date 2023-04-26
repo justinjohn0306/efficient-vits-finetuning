@@ -12,6 +12,7 @@ import torch.multiprocessing as mp
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.cuda.amp import autocast, GradScaler
+import bitsandbytes as bnb
 
 import commons
 import utils
@@ -86,12 +87,12 @@ def run(rank, n_gpus, hps):
       hps.train.segment_size // hps.data.hop_length,
       **hps.model).cuda(rank)
   net_d = MultiPeriodDiscriminator(hps.model.use_spectral_norm).cuda(rank)
-  optim_g = torch.optim.AdamW(
+  optim_g = bnb.optim.AdamW(
       net_g.parameters(), 
       hps.train.learning_rate, 
       betas=hps.train.betas, 
       eps=hps.train.eps)
-  optim_d = torch.optim.AdamW(
+  optim_d = bnb.optim.AdamW(
       net_d.parameters(),
       hps.train.learning_rate, 
       betas=hps.train.betas, 
