@@ -13,7 +13,8 @@
  - [x] Make sure training loop runs
  - [x] Clean up logging, maybe integrate WandB to track training progress
    - [x] WandB integrated! Run ```train_wandb.py``` to use it 
- - [ ] Test finetune as-is on test dataset to make sure patched discriminator works
+ - [x] Test finetune as-is on test dataset to make sure patched discriminator works
+   - Wont be releasing weights as model is not that good. See w&b report underneath
  - [ ] implement LoRA
  - [ ] Test finetune on lora using same test dataset
  - [x] Implement 8-bit optimizers
