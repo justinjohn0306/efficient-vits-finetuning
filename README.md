@@ -2,9 +2,9 @@
 
 ## Goals
  - [ ] Try to implement LoRA Finetuning on VITS by modifying attentions.py as described in the LoRA Paper
- - [ ] Try to implement 8-bit training using bitsandbytes to reduce vram usage
+   - [x] Doesnt work as the generator doesnt get updated, need to research more
+ - [x] Try to implement 8-bit training using bitsandbytes to reduce vram usage
    - [x] 8 bit optimisers
-   - [ ] 8 bit layers -- Is it needed?
  - [ ] Write paper explaining steps?
 
 ## Plan
