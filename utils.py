@@ -8,12 +8,47 @@ import subprocess
 import numpy as np
 from scipy.io.wavfile import read
 import torch
+import loralib as lora
 
 MATPLOTLIB_FLAG = False
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 logger = logging
 
+def load_lora_checkpoint(checkpoint_path, model, optimizer=None, generator_path = "./pretrained/generator.pth"):
+  assert os.path.isfile(checkpoint_path)
+  checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
+  iteration = checkpoint_dict['iteration']
+  learning_rate = checkpoint_dict['learning_rate']
+  if optimizer is not None:
+    optimizer.load_state_dict(checkpoint_dict['optimizer'])
+  generator_state_dict = torch.load(generator_path)['model']
+  lora_state_dict = checkpoint_dict['model']
+
+  if hasattr(model, 'module'):
+    model.module.load_state_dict(generator_state_dict, strict=False)
+    model.module.load_state_dict(lora_state_dict, strict=False)
+    lora.mark_only_lora_as_trainable(model.module)
+  else:
+    model.load_state_dict(generator_state_dict, strict=False)
+    model.load_state_dict(lora_state_dict, strict=False)
+    lora.mark_only_lora_as_trainable(model)
+  logger.info("Loaded checkpoint '{}' (iteration {})" .format(
+    checkpoint_path, iteration))
+  
+  return model, optimizer, learning_rate, iteration
+
+def save_lora_checkpoint(model, optimizer, learning_rate, iteration, checkpoint_path):
+  logger.info("Saving model and optimizer state at iteration {} to {}".format(
+    iteration, checkpoint_path))
+  if hasattr(model, 'module'):
+    state_dict = lora.lora_state_dict(model.module)
+  else:
+    state_dict = lora.lora_state_dict(model)
+  torch.save({'model': state_dict,
+              'iteration': iteration,
+              'optimizer': optimizer.state_dict(),
+              'learning_rate': learning_rate}, checkpoint_path)
 
 def load_checkpoint(checkpoint_path, model, optimizer=None):
   assert os.path.isfile(checkpoint_path)
