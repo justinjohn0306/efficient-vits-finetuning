@@ -26,6 +26,7 @@
  - The generator for LJSpeech is [here](https://drive.google.com/file/d/1T-u3OV49W6Lv3bDxh-EA63ALZKHqyy0t/view?usp=share_link)
  - The discriminator(extracted from hifi-gan) is [here](https://drive.google.com/file/d/118ffn807Eqlu891qbNRQP7O9E0-aMPxM/view?usp=share_link)
  - A notebook with a running training loop is [here](https://colab.research.google.com/drive/1rtbhcfxwRRHPkFJT_u7M_slo8_s_PYcK?usp=sharing)
+ - W&B [Report](https://api.wandb.ai/links/nivibilla/q1ncpudm) on finetuning with 8bit optimisers
 
 ## 8 bit AdamW
 <img src="resources/bitsandbytes.png" alt="VITS at training with 8bit AdamW" height="150">
