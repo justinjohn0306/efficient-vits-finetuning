@@ -17,10 +17,7 @@
  - [ ] implement LoRA
  - [ ] Test finetune on lora using same test dataset
  - [x] Implement 8-bit optimizers
- - [ ] Maybe use 8bit layers(but this will probably increase vram usage)
- - [ ] Create webpage to show results
- - [ ] Open Source everything ;)
- - [ ] Maybe write a paper?
+ - [x] Create webpage to show results (see w&b report)
 
 ## Finetuning and Pretrained Models
  - The generator for LJSpeech is [here](https://drive.google.com/file/d/1T-u3OV49W6Lv3bDxh-EA63ALZKHqyy0t/view?usp=share_link)
