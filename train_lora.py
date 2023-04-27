@@ -114,8 +114,6 @@ def run(rank, n_gpus, hps):
         hps.train.learning_rate, 
         betas=hps.train.betas, 
         eps=hps.train.eps)
-    
-    lora.mark_only_lora_as_trainable(net_g)
 
     wandb.watch([net_g, net_d], log='all')
     # net_g = DDP(net_g, device_ids=[rank])
@@ -126,25 +124,26 @@ def run(rank, n_gpus, hps):
       _, _, _, epoch_str = utils.load_checkpoint(utils.latest_checkpoint_path(hps.model_dir, "D_*.pth"), net_d, optim_d)
       global_step = (epoch_str - 1) * len(train_loader)
     except:
-      if hps.train.finetune:
-        print("loading pretrained generator")
-        generator_state_dict = torch.load('./pretrained/generator.pth')
-        if hasattr(net_g, 'module'):
-          net_g.module.load_state_dict(generator_state_dict['model'])
-          print("pretrained generator loaded")
-        else:
-          net_g.load_state_dict(generator_state_dict['model'])
-          print("pretrained generator loaded")
+      print("loading generator")
+      generator_state_dict = torch.load('./pretrained/generator.pth')
+      if hasattr(net_g, 'module'):
+        net_g.module.load_state_dict(generator_state_dict['model'], strict=False)
+        lora.mark_only_lora_as_trainable(net_g.module)
+      else:
+        net_g.load_state_dict(generator_state_dict['model'], strict=False)
+        lora.mark_only_lora_as_trainable(net_g)
 
-        print("loading pretrained discriminator")
-        if hasattr(net_d, 'module'):
-          net_d.module.load_state_dict(torch.load('./pretrained/discriminator.pth'))
-          print("pretrained discriminator loaded")
-        else:
-          net_d.load_state_dict(torch.load('./pretrained/discriminator.pth'))
-          print("pretrained discriminator loaded")
+      print("loading discriminator")
+      if hasattr(net_d, 'module'):
+        net_d.module.load_state_dict(torch.load('./pretrained/discriminator.pth'))
+        print("pretrained discriminator loaded")
+      else:
+        net_d.load_state_dict(torch.load('./pretrained/discriminator.pth'))
+        print("pretrained discriminator loaded")
       epoch_str = 1
       global_step = 0
+    
+    lora.mark_only_lora_as_trainable(net_g)
 
     scheduler_g = torch.optim.lr_scheduler.ExponentialLR(optim_g, gamma=hps.train.lr_decay, last_epoch=epoch_str-2)
     scheduler_d = torch.optim.lr_scheduler.ExponentialLR(optim_d, gamma=hps.train.lr_decay, last_epoch=epoch_str-2)
