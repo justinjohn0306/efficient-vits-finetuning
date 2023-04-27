@@ -13,4 +13,3 @@ tqdm
 phonemizer
 bitsandbytes
 wandb
-git+https://github.com/nivibilla/LoRA.git
