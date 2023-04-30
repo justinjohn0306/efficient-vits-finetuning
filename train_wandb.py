@@ -61,12 +61,12 @@ def main():
   os.environ['MASTER_PORT'] = '8000'
 
   hps = utils.get_hparams()
-  # mp.spawn(run, nprocs=n_gpus, args=(n_gpus, hps,))
-  run(0, 1, hps)
+  mp.spawn(run, nprocs=n_gpus, args=(n_gpus, hps,))
+#   run(0, 1, hps)
 
 
 def run(rank, n_gpus, hps):
-  with wandb.init(project=f"vits_finetuning_{hps.data.name}", config=hps, resume=hps.train.wandb_resume):
+  with wandb.init(project=f"vits_finetuning_{hps.data.name}", config=hps, resume=hps.train.wandb_resume, id=wandb.util.generate_id()):
     global global_step
     if rank == 0:
       logger = utils.get_logger(hps.model_dir)
@@ -75,7 +75,7 @@ def run(rank, n_gpus, hps):
       writer = SummaryWriter(log_dir=hps.model_dir)
       writer_eval = SummaryWriter(log_dir=os.path.join(hps.model_dir, "eval"))
 
-    # dist.init_process_group(backend='nccl', init_method='env://', world_size=n_gpus, rank=rank)
+    dist.init_process_group(backend='nccl', init_method='env://', world_size=n_gpus, rank=rank)
     torch.manual_seed(hps.train.seed)
     torch.cuda.set_device(rank)
 
@@ -113,8 +113,8 @@ def run(rank, n_gpus, hps):
         betas=hps.train.betas, 
         eps=hps.train.eps)
     wandb.watch([net_g, net_d], log='all')
-    # net_g = DDP(net_g, device_ids=[rank])
-    # net_d = DDP(net_d, device_ids=[rank])
+    net_g = DDP(net_g, device_ids=[rank])
+    net_d = DDP(net_d, device_ids=[rank])
 
     try:
       _, _, _, epoch_str = utils.load_checkpoint(utils.latest_checkpoint_path(hps.model_dir, "G_*.pth"), net_g, optim_g)
