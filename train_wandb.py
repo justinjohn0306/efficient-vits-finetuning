@@ -276,7 +276,7 @@ def train_and_evaluate(rank, epoch, hps, nets, optims, schedulers, scaler, loade
             x_tst_lengths = torch.LongTensor([stn_tst.size(0)])
             audio = net_g.module.infer(x_tst.cuda(0), x_tst_lengths.cuda(0), noise_scale=.667, noise_scale_w=0.8, length_scale=1)[0][0,0].data.float().cpu().numpy()
             wandb.log({"epoch":epoch, "global_step":global_step, "inferred_audio" : wandb.Audio(audio, sample_rate=hps.data.sampling_rate, caption='inference_test')})
-        net_g.train(
+        net_g.train()
         utils.save_checkpoint(net_g, optim_g, hps.train.learning_rate, epoch, os.path.join(hps.model_dir, "G_{}.pth".format(global_step)))
         utils.save_checkpoint(net_d, optim_d, hps.train.learning_rate, epoch, os.path.join(hps.model_dir, "D_{}.pth".format(global_step)))
     global_step += 1
