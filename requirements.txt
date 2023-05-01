@@ -7,7 +7,7 @@ tensorboard
 torch==1.13.1
 torchvision
 unidecode
-pyopenjtalk==0.3.0
+pyopenjtalk==0.2.0
 protobuf
 tqdm
 phonemizer
